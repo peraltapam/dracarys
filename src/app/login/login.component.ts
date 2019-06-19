@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -10,17 +11,16 @@ export class LoginComponent implements OnInit {
   user = {username: 'dany', password: 'drogon'};
   showAlert = false;
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
   }
 
   loginHandler(form: NgForm) {
-    console.log('login clicked', form);
     if(form.value.username === this.user.username &&
        form.value.password === this.user.password ) {
-      console.log('login successful');
       this.showAlert = false;
+      this.router.navigateByUrl('/dragonList');
     } else {
       this.showAlert = true;
     }

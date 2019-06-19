@@ -5,11 +5,13 @@ import { FormsModule} from '@angular/forms';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { AppRoutingModule } from './app-routing.module';
+import { DragonListComponent } from './dragon-list/dragon-list.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent
+    LoginComponent,
+    DragonListComponent
   ],
   imports: [
     BrowserModule,
