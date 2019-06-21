@@ -3,11 +3,15 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { LoginComponent } from './login/login.component';
 import { DragonListComponent } from './dragon-list/dragon-list.component';
+import { DragonDetailComponent } from './dragon-list/dragon-detail/dragon-detail.component';
 import { AuthGuard } from './auth-guard.service';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
-  { path: 'dragonList', canActivate: [AuthGuard], component: DragonListComponent }
+  // { path: 'dragon-list', canActivate: [AuthGuard], component: DragonListComponent }
+  { path: 'dragon-list', component: DragonListComponent },
+  { path: 'dragon-list/:id', component: DragonDetailComponent },
+
 ];
 
 @NgModule({

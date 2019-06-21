@@ -18,7 +18,7 @@ export class LoginComponent implements OnInit {
 
   loginHandler(form: NgForm) {
     if (this.authService.validateLogin(form.value.username, form.value.password)) {
-      this.router.navigateByUrl('/dragonList');
+      this.router.navigate(['/dragon-list']);
       this.showAlert = false;
       } else {
         this.showAlert = true;
