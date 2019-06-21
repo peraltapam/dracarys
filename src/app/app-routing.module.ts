@@ -4,7 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './login/login.component';
 import { DragonListComponent } from './dragon-list/dragon-list.component';
 import { DragonDetailComponent } from './dragon-list/dragon-detail/dragon-detail.component';
-import { AuthGuard } from './auth-guard.service';
+import { AuthGuard } from './login/auth-guard.service';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },

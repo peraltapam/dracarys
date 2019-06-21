@@ -1,3 +1,6 @@
+import { Injectable } from '@angular/core';
+
+@Injectable({ providedIn: 'root' })
 export class AuthService {
 	authUser = { username: 'dany', password: 'drogon' };
 	loggedIn = false;
