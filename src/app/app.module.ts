@@ -7,7 +7,7 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { HeaderComponent } from './header/header.component';
 import { LoginModule } from './login/login.module';
-import { DragonListModule } from './dragon-list/dragon-list.module';
+import { DragonModule } from './dragon/dragon.module';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
 
 @NgModule({
@@ -21,7 +21,7 @@ import { AngularFontAwesomeModule } from 'angular-font-awesome';
     AppRoutingModule,
     HttpClientModule,
     LoginModule,
-    DragonListModule,
+    DragonModule,
     AngularFontAwesomeModule
   ],
   bootstrap: [AppComponent]

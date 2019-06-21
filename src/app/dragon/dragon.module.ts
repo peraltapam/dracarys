@@ -2,7 +2,8 @@ import { NgModule } from "@angular/core";
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 
-import { DragonListComponent } from './dragon-list.component';
+import { DragonComponent } from './dragon.component';
+import { DragonListComponent } from './dragon-list/dragon-list.component';
 import { DragonDetailComponent } from './dragon-detail/dragon-detail.component';
 import { DragonEditComponent } from './dragon-edit/dragon-edit.component';
 
@@ -10,7 +11,8 @@ import { DragonEditComponent } from './dragon-edit/dragon-edit.component';
 	declarations: [
 		DragonListComponent,
 		DragonDetailComponent,
-		DragonEditComponent
+		DragonEditComponent,
+		DragonComponent
 	],
 	imports: [
 		CommonModule,
@@ -18,4 +20,4 @@ import { DragonEditComponent } from './dragon-edit/dragon-edit.component';
 	]
 })
 
-export class DragonListModule {}
+export class DragonModule {}

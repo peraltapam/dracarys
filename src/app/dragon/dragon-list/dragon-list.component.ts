@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
-import { Dragon } from './dragon.model';
+import { Dragon } from '../dragon.model';
 
 @Component({
   selector: 'app-dragon-list',

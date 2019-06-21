@@ -2,10 +2,10 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import { LoginComponent } from './login/login.component';
-import { DragonListComponent } from './dragon-list/dragon-list.component';
-import { DragonDetailComponent } from './dragon-list/dragon-detail/dragon-detail.component';
-import { DragonEditComponent } from './dragon-list/dragon-edit/dragon-edit.component';
-import { AuthGuard } from './login/auth-guard.service';
+import { DragonListComponent } from './dragon/dragon-list/dragon-list.component';
+import { DragonDetailComponent } from './dragon/dragon-detail/dragon-detail.component';
+import { DragonEditComponent } from './dragon/dragon-edit/dragon-edit.component';
+import { AuthGuard } from './login/auth/auth-guard.service';
 
 const routes: Routes = [
   { path: '', redirectTo: 'dragon-list', pathMatch: 'full' },
