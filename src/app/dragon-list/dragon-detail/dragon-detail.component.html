@@ -1,3 +1,36 @@
-<p>
-  dragon-detail works!
-</p>
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <form *ngIf="dragonDetail">
+        <fieldset>
+          <a routerLink="/dragon-list" class="back-link"><i class="icon fa fa-chevron-left"></i>Dragons List</a>
+          <h4>Dragon Details</h4>
+          <div class="form-group row">
+            <label for="creation-date" class="col-6 col-sm-3 col-form-label">Creation date: </label>
+            <div class="col-6 col-sm-9 form-info">
+              <span>{{ dragonDetail.createdAt | date }}</span>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="dragon-name" class="col-6 col-sm-3 col-form-label">Name: </label>
+            <div class="col-6 col-sm-9 form-info">
+              <span>{{ dragonDetail.name }}</span>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="dragon-type" class="col-6 col-sm-3 col-form-label">Type: </label>
+            <div class="col-6 col-sm-9 form-info">
+              <span>{{ dragonDetail.type }}</span>
+            </div>
+          </div>
+        </fieldset>
+      </form>
+    </div>
+    <div class="col-12">
+      <a [routerLink]="['edit']">Edit</a>
+    </div>
+    <div class="col-12">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>

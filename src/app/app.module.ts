@@ -8,6 +8,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { HeaderComponent } from './header/header.component';
 import { LoginModule } from './login/login.module';
 import { DragonListModule } from './dragon-list/dragon-list.module';
+import { AngularFontAwesomeModule } from 'angular-font-awesome';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { DragonListModule } from './dragon-list/dragon-list.module';
     AppRoutingModule,
     HttpClientModule,
     LoginModule,
-    DragonListModule
+    DragonListModule,
+    AngularFontAwesomeModule
   ],
   bootstrap: [AppComponent]
 })

@@ -1,9 +1,9 @@
 <div class="col-sm-8 dragon-list">
   <div class="list-group">
     <a
-      href="#"
       class="list-group-item list-group-item-action"
       *ngFor="let dragon of dragonList"
+      [routerLink]="['/dragon-list', dragon.id]"
     >
       {{ dragon.name }}
     </a>
