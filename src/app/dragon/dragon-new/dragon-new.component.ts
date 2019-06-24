@@ -27,7 +27,6 @@ export class DragonNewComponent implements OnInit {
     }
     this.dragonService.createDragon(JSON.stringify(this.dragonData)).subscribe(
       (response) => {
-        console.log(response);
         if(response && response.id) {
           this.showSuccessAlert = true;
           form.reset();

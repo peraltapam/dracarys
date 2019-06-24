@@ -12,7 +12,7 @@ export class DragonService {
   constructor(private http: HttpClient) { }
 
   getDragons() {
-    return this.http.get(`${this.apiUrl}dragon`);
+    return this.http.get<Dragon[]>(`${this.apiUrl}dragon`);
   }
 
   getDragonDetails(id: string) {
@@ -28,7 +28,6 @@ export class DragonService {
   }
 
   deleteDragon(id: string) {
-    //todo
-    // this.http.delete(`${this.apiUrl}dragon/${id}`);
+    return this.http.delete<Dragon>(`${this.apiUrl}dragon/${id}`);
   }
 }
