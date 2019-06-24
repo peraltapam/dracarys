@@ -19,8 +19,8 @@ export class DragonService {
     return this.http.get<Dragon>(`${this.apiUrl}dragon/${id}`);
   }
 
-  updateDragon(data: string) {
-    //todo
+  editDragon(id: string, data: string) {
+    return this.http.put<Dragon>(`${this.apiUrl}dragonss/${id}`, JSON.parse(data));
   }
 
   createDragon(data: string) {

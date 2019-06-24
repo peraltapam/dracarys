@@ -10,13 +10,13 @@
       <span>{{ success }}</span>
       <a class="ml-1" routerLink="/dragon-list">Go to dragon list.</a>
     </div>
-    <div class="col-12 col-sm-6">
+    <div class="col-12">
       <form *ngIf="dragonDetail">
         <fieldset>
-          <h4>Dragon Details</h4>
-          <div class="col-12">
-            <a class="col-6" [routerLink]="['edit']">Edit</a>
-            <a (click)="deleteDragon(dragonDetail.id)" class="delete-dragon col-6">Delete<span class="fa fa-trash"></span></a>
+          <div>
+            <h4>Dragon Details</h4>
+            <a [routerLink]="['edit']" class="ml-2"><span class="mr-2 ml-2 fa fa-edit"></span></a>
+            <a (click)="deleteDragon(dragonDetail.id)" class="delete-dragon"><span class="ml-2 fa fa-trash"></span></a>
           </div>
           <div class="form-group row">
             <label for="creation-date" class="col-6 col-sm-3 col-form-label">Creation date: </label>
@@ -38,9 +38,6 @@
           </div>
         </fieldset>
       </form>
-    </div>
-    <div class="col-12 col-sm-6">
-      <router-outlet></router-outlet>
     </div>
   </div>
 </div>

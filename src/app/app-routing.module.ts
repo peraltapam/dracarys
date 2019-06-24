@@ -12,11 +12,10 @@ const routes: Routes = [
   { path: '', redirectTo: 'dragon-list', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
   // { path: 'dragon-list', canActivate: [AuthGuard], component: DragonListComponent },
-  { path: 'register', component: DragonNewComponent},
+  { path: 'register', component: DragonNewComponent },
   { path: 'dragon-list', component: DragonListComponent },
-  { path: 'dragon-list/:id', component: DragonDetailComponent, children: [
-    { path: 'edit', component: DragonEditComponent }
-  ] },
+  { path: 'dragon-list/:id', component: DragonDetailComponent },
+  { path: 'dragon-list/:id/edit', component: DragonEditComponent }
 
 ];
 

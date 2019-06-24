@@ -11,13 +11,13 @@ import { Dragon } from '../dragon.model';
 })
 export class DragonNewComponent implements OnInit {
   dragonData: Dragon;
-  showSuccessAlert: boolean = false;
+  showSuccessAlert = null;
   error = null;
 
   constructor(private dragonService: DragonService) { }
 
   ngOnInit() {
-    this.showSuccessAlert = false;
+    this.showSuccessAlert = null;
   }
 
   registerHandler(form: NgForm) {
