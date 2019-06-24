@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
+import { Dragon } from './dragon/dragon.model';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -14,15 +16,15 @@ export class DragonService {
   }
 
   getDragonDetails(id: string) {
-    return this.http.get(`${this.apiUrl}dragon/${id}`);
+    return this.http.get<Dragon>(`${this.apiUrl}dragon/${id}`);
   }
 
-  updateDragon(data) {
+  updateDragon(data: string) {
     //todo
   }
 
-  createDragon(data) {
-    //todo
+  createDragon(data: string) {
+    return this.http.post<Dragon>(`${this.apiUrl}dragon`, JSON.parse(data));
   }
 
   deleteDragon(id: string) {

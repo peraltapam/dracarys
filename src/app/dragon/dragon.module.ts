@@ -1,5 +1,6 @@
 import { NgModule } from "@angular/core";
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
 import { DragonComponent } from './dragon.component';
@@ -18,7 +19,8 @@ import { DragonNewComponent } from './dragon-new/dragon-new.component';
 	],
 	imports: [
 		CommonModule,
-		RouterModule
+		RouterModule,
+		FormsModule
 	]
 })
 

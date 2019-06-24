@@ -22,7 +22,7 @@ export class DragonDetailComponent implements OnInit {
 
   getDragonDetails(id: string) {
     this.dragonService.getDragonDetails(id).subscribe(
-      (response: Dragon) => {
+      (response) => {
         this.dragonDetail = response;
       }
     )
