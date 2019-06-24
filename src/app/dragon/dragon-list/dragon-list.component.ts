@@ -43,4 +43,11 @@ export class DragonListComponent implements OnInit {
     );
   }
 
+  reset(type: string) {
+    if(type === 'success') {
+      this.success = null;
+    } else {
+      this.error = null;
+    }
+  }
 }

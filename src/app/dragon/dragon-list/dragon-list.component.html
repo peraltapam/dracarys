@@ -1,9 +1,10 @@
 <div class="col-sm-8 dragon-list">
   <div *ngIf="error" class="alert alert-danger" role="alert">
+    <a class="close ml-1" (click)="reset('error')">&times;</a>
     <span>{{ error }}</span>
   </div>
-  <div *ngIf="success" class="alert alert-dismissible alert-success" role="alert">
-    <button type="button" class="close" data-dismiss="alert">&times;</button>
+  <div *ngIf="success" class="alert alert-success" role="alert">
+    <a class="close ml-1" (click)="reset('success')">&times;</a>
     <span>{{ success }}</span>
   </div>
   <div class="list-group">

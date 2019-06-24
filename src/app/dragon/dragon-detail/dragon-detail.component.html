@@ -1,11 +1,23 @@
 <div class="container">
   <div class="row">
     <a routerLink="/dragon-list" class="back-link col-12"><i class="icon fa fa-chevron-left"></i>Dragons List</a>
+    <div *ngIf="error" class="alert alert-danger col-12" role="alert">
+      <a class="close ml-1" (click)="reset('error')">&times;</a>
+      <span>{{ error }}</span>
+    </div>
+    <div *ngIf="success" class="alert alert-dismissible alert-success col-12" role="alert">
+      <a class="close ml-1" (click)="reset('success')">&times;</a>
+      <span>{{ success }}</span>
+      <a class="ml-1" routerLink="/dragon-list">Go to dragon list.</a>
+    </div>
     <div class="col-12 col-sm-6">
       <form *ngIf="dragonDetail">
         <fieldset>
           <h4>Dragon Details</h4>
-          <a [routerLink]="['edit']">Edit</a>
+          <div class="col-12">
+            <a class="col-6" [routerLink]="['edit']">Edit</a>
+            <a (click)="deleteDragon(dragonDetail.id)" class="delete-dragon col-6">Delete<span class="fa fa-trash"></span></a>
+          </div>
           <div class="form-group row">
             <label for="creation-date" class="col-6 col-sm-3 col-form-label">Creation date: </label>
             <div class="col-6 col-sm-9 form-info">

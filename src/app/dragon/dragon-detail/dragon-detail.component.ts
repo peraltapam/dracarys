@@ -12,6 +12,8 @@ import { DragonService } from '../../dragon.service';
 export class DragonDetailComponent implements OnInit {
   dragonDetail: Dragon;
   dragonId: string;
+  error = null;
+  success = null;
 
   constructor(private route: ActivatedRoute, private dragonService: DragonService) { }
 
@@ -22,10 +24,32 @@ export class DragonDetailComponent implements OnInit {
 
   getDragonDetails(id: string) {
     this.dragonService.getDragonDetails(id).subscribe(
-      (response) => {
+      response => {
         this.dragonDetail = response;
+      },
+      error => {
+        this.error = `Unable to fetch dragon details! ${error.error}`;
       }
     )
+  }
+
+  deleteDragon(id: string) {
+    this.dragonService.deleteDragon(id).subscribe(
+      response => {
+        this.success = `Dragon ${response.name} has been deleted!`;
+      },
+      error => {
+        this.error = `Unable to delete selected dragon! ${error.error}`;
+      }
+    );
+  }
+
+  reset(type: string) {
+    if(type === 'success') {
+      this.success = null;
+    } else {
+      this.error = null;
+    }
   }
 
 }
