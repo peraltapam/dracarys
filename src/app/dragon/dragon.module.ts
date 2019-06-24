@@ -6,13 +6,15 @@ import { DragonComponent } from './dragon.component';
 import { DragonListComponent } from './dragon-list/dragon-list.component';
 import { DragonDetailComponent } from './dragon-detail/dragon-detail.component';
 import { DragonEditComponent } from './dragon-edit/dragon-edit.component';
+import { DragonNewComponent } from './dragon-new/dragon-new.component';
 
 @NgModule({
 	declarations: [
 		DragonListComponent,
 		DragonDetailComponent,
 		DragonEditComponent,
-		DragonComponent
+		DragonComponent,
+		DragonNewComponent
 	],
 	imports: [
 		CommonModule,

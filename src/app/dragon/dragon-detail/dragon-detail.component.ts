@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { Dragon } from '../dragon.model';
-import { HttpClient } from '@angular/common/http';
+import { DragonService } from '../../dragon.service';
 
 @Component({
   selector: 'app-dragon-detail',
@@ -11,18 +11,17 @@ import { HttpClient } from '@angular/common/http';
 })
 export class DragonDetailComponent implements OnInit {
   dragonDetail: Dragon;
-  dragonId: number;
-  apiUrl: string = 'http://5c4b2a47aa8ee500142b4887.mockapi.io/api/v1/';
+  dragonId: string;
 
-  constructor(private route: ActivatedRoute, private http: HttpClient) { }
+  constructor(private route: ActivatedRoute, private dragonService: DragonService) { }
 
   ngOnInit() {
     this.dragonId = this.route.snapshot.params['id'];
     this.getDragonDetails(this.dragonId);
   }
 
-  getDragonDetails(id: number) {
-    this.http.get(`${this.apiUrl}dragon/${id}`).subscribe(
+  getDragonDetails(id: string) {
+    this.dragonService.getDragonDetails(id).subscribe(
       (response: Dragon) => {
         this.dragonDetail = response;
       }

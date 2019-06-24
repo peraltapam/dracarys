@@ -1,10 +1,11 @@
 <div class="container">
   <div class="row">
-    <div class="col-12">
+    <a routerLink="/dragon-list" class="back-link col-12"><i class="icon fa fa-chevron-left"></i>Dragons List</a>
+    <div class="col-12 col-sm-6">
       <form *ngIf="dragonDetail">
         <fieldset>
-          <a routerLink="/dragon-list" class="back-link"><i class="icon fa fa-chevron-left"></i>Dragons List</a>
           <h4>Dragon Details</h4>
+          <a [routerLink]="['edit']">Edit</a>
           <div class="form-group row">
             <label for="creation-date" class="col-6 col-sm-3 col-form-label">Creation date: </label>
             <div class="col-6 col-sm-9 form-info">
@@ -26,10 +27,7 @@
         </fieldset>
       </form>
     </div>
-    <div class="col-12">
-      <a [routerLink]="['edit']">Edit</a>
-    </div>
-    <div class="col-12">
+    <div class="col-12 col-sm-6">
       <router-outlet></router-outlet>
     </div>
   </div>
