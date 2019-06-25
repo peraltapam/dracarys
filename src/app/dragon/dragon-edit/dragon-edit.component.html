@@ -1,5 +1,6 @@
 <div class="container">
   <div class="row">
+    <a routerLink="/dragon-list" class="back-link col-12 mb-2"><i class="icon fa fa-chevron-left"></i>Dragons List</a>
     <div class="edit-form col-12 col-sm-8 col-md-6 mx-auto">
       <legend>Edit Dragon</legend>
       <form *ngIf="selectedDragon" (ngSubmit)="editHandler(editForm)" #editForm="ngForm">
@@ -18,13 +19,8 @@
             class="form-control"
             name="name"
             ngModel
-            required
-            [placeholder]="selectedDragon.name"
+            [ngModel]="selectedDragon.name"
             #name="ngModel">
-          <span
-            class="invalid-feedback"
-            *ngIf="!name.valid && name.touched">Please enter a dragon name.
-          </span>
         </div>
         <div class="form-group">
           <label for="dragonType">Type</label>
@@ -33,18 +29,17 @@
             class="form-control"
             name="dragonType"
             ngModel
-            required
-            [placeholder]="selectedDragon.type"
+            [ngModel]="selectedDragon.type"
             #dragonType="ngModel">
-          <span
-            class="invalid-feedback"
-            *ngIf="!dragonType.valid && dragonType.touched">Please enter a dragon type.
-          </span>
         </div>
+        <span
+          class="invalid-feedback mb-4"
+          *ngIf="isNotEdited">Please edit at least one field.
+        </span>
         <button 
         type="submit"
         class="btn btn-primary"
-        [disabled]="!editForm.valid">Edit</button>
+        [disabled]="!editForm.valid || !editForm.dirty">Save</button>
         <button type="button" (click)="resetForm(editForm)" class="btn btn-secondary ml-3">Cancel</button>
       </form>
     </div>

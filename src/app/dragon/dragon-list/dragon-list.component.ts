@@ -22,7 +22,7 @@ export class DragonListComponent implements OnInit {
   private getDragons() {
     this.dragonService.getDragons().subscribe(
       dragons => {
-        dragons.sort((prev, next) => (prev.name > next.name) ? 1 : -1);
+        dragons.sort((prev, next) => (prev.name.toLocaleLowerCase() > next.name.toLocaleLowerCase()) ? 1 : -1);
         this.dragonList = dragons;
       },
       error => {

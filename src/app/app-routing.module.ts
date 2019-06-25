@@ -9,11 +9,17 @@ import { DragonNewComponent } from './dragon/dragon-new/dragon-new.component';
 import { AuthGuard } from './login/auth/auth-guard.service';
 
 const routes: Routes = [
+  // { path: '', redirectTo: 'dragon-list', pathMatch: 'full' },
+  // { path: 'login', component: LoginComponent },
+  // { path: 'dragon-list', canActivate: [AuthGuard], component: DragonListComponent },
+  // { path: 'register', canActivate: [AuthGuard], component: DragonNewComponent },
+  // { path: 'dragon-list/:id', canActivate: [AuthGuard], component: DragonDetailComponent },
+  // { path: 'dragon-list/:id/edit', canActivate: [AuthGuard], component: DragonEditComponent }
+
   { path: '', redirectTo: 'dragon-list', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
-  // { path: 'dragon-list', canActivate: [AuthGuard], component: DragonListComponent },
-  { path: 'register', component: DragonNewComponent },
   { path: 'dragon-list', component: DragonListComponent },
+  { path: 'register', component: DragonNewComponent },
   { path: 'dragon-list/:id', component: DragonDetailComponent },
   { path: 'dragon-list/:id/edit', component: DragonEditComponent }
 

@@ -17,6 +17,7 @@ export class DragonEditComponent implements OnInit {
   selectedId: string;
   success = null;
   error = null;
+  isNotEdited = null;
 
   constructor(private dragonService: DragonService, private route: ActivatedRoute) { }
 
@@ -37,6 +38,14 @@ export class DragonEditComponent implements OnInit {
   }
 
   editHandler(form: NgForm) {
+    if(form.value.name === this.selectedDragon.name &&
+       form.value.dragonType === this.selectedDragon.type)
+    {
+      this.isNotEdited = true;
+      this.resetForm(form);
+      return;
+    }
+    this.isNotEdited = false;
     this.dragonData = {
       name: form.value.name,
       type: form.value.dragonType
@@ -45,20 +54,28 @@ export class DragonEditComponent implements OnInit {
       (response) => {
         if(response && response.id) {
           this.success = 'Dragon successfully edited!';
+          this.selectedDragon = {
+            name: response.name,
+            type: response.type
+          }
+          this.resetForm(form);
         } else {
           this.error = 'Invalid response';
         }
-        form.reset();
+         this.resetForm(form);
       },
       error => {
         this.error = error.error;
-        form.reset();
+         this.resetForm(form);
       }
     );
   }
 
   resetForm(form: NgForm) {
-    form.reset();
+    form.reset({
+      name: this.selectedDragon.name,
+      dragonType: this.selectedDragon.type
+    });
   }
 
   reset(type: string) {

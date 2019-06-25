@@ -15,8 +15,12 @@
         <a [routerLink]="['/dragon-list', dragon.id]"> {{ dragon.name }} </a>
       </div>
       <div>
-        <a [routerLink]="['/dragon-list', dragon.id, 'edit']" class="mr-3"><span class="fa fa-edit"></span></a>
-        <a (click)="deleteDragon(dragon.id)" class="delete-dragon"><span class="fa fa-trash"></span></a>
+        <a [routerLink]="['/dragon-list', dragon.id, 'edit']" class="mr-3">
+          <span class="fa fa-edit align-middle dark-blue"></span>
+        </a>
+        <a (click)="deleteDragon(dragon.id)" class="delete-dragon">
+          <span class="fa fa-trash"></span>
+        </a>
       </div>
     </li>
   </div>

@@ -20,7 +20,7 @@ export class DragonService {
   }
 
   editDragon(id: string, data: string) {
-    return this.http.put<Dragon>(`${this.apiUrl}dragonss/${id}`, JSON.parse(data));
+    return this.http.put<Dragon>(`${this.apiUrl}dragon/${id}`, JSON.parse(data));
   }
 
   createDragon(data: string) {

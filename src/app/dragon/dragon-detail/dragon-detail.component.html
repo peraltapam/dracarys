@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row">
-    <a routerLink="/dragon-list" class="back-link col-12"><i class="icon fa fa-chevron-left"></i>Dragons List</a>
+    <a routerLink="/dragon-list" class="back-link col-12 mb-2"><i class="icon fa fa-chevron-left"></i>Dragons List</a>
     <div *ngIf="error" class="alert alert-danger col-12" role="alert">
       <a class="close ml-1" (click)="reset('error')">&times;</a>
       <span>{{ error }}</span>
@@ -15,8 +15,8 @@
         <fieldset>
           <div>
             <h4>Dragon Details</h4>
-            <a [routerLink]="['edit']" class="ml-2"><span class="mr-2 ml-2 fa fa-edit"></span></a>
-            <a (click)="deleteDragon(dragonDetail.id)" class="delete-dragon"><span class="ml-2 fa fa-trash"></span></a>
+            <a [routerLink]="['edit']" class="ml-2"><span class="mr-2 ml-2 fa fa-edit action-icon align-text-top"></span></a>
+            <a (click)="deleteDragon(dragonDetail.id)" class="delete-dragon"><span class="ml-2 fa fa-trash action-icon align-baseline"></span></a>
           </div>
           <div class="form-group row">
             <label for="creation-date" class="col-6 col-sm-3 col-form-label">Creation date: </label>
