@@ -1,27 +1,44 @@
-<div class="col-sm-8 dragon-list">
-  <div *ngIf="error" class="alert alert-danger" role="alert">
-    <a class="close ml-1" (click)="reset('error')">&times;</a>
-    <span>{{ error }}</span>
-  </div>
-  <div *ngIf="success" class="alert alert-success" role="alert">
-    <a class="close ml-1" (click)="reset('success')">&times;</a>
-    <span>{{ success }}</span>
-  </div>
-  <div class="list-group">
-    <li class="list-group-item d-flex justify-content-between align-items-center"
-        *ngFor="let dragon of dragonList"
-    >
-      <div>
-        <a [routerLink]="['/dragon-list', dragon.id]"> {{ dragon.name }} </a>
+<div class="container">
+  <div class="row">
+
+    <!-- spinner -->
+    <div class="col-12" *ngIf="isLoading">
+      <app-loading-spinner></app-loading-spinner>
+    </div>
+
+    <div class="col-12 col-sm-8 col-lg-6 mx-auto">
+      <h4>Dragons List</h4>
+
+      <!-- alert messages -->
+      <div *ngIf="error" class="alert alert-danger" role="alert">
+        <a class="close ml-1" (click)="reset('error')">&times;</a>
+        <span>{{ error }}</span>
       </div>
-      <div>
-        <a [routerLink]="['/dragon-list', dragon.id, 'edit']" class="mr-3">
-          <span class="fa fa-edit align-middle dark-blue"></span>
-        </a>
-        <a (click)="deleteDragon(dragon.id)" class="delete-dragon">
-          <span class="fa fa-trash"></span>
-        </a>
+      <div *ngIf="success" class="alert alert-success" role="alert">
+        <a class="close ml-1" (click)="reset('success')">&times;</a>
+        <span>{{ success }}</span>
       </div>
-    </li>
+
+      <!-- dragons list -->
+      <ul class="list-group">
+        <li class="list-group-item d-flex justify-content-between align-items-center"
+            *ngFor="let dragon of dragonList"
+        >
+          <div class="name-link">
+            <a [routerLink]="['/dragon-list', dragon.id]"> {{ dragon.name }} </a>
+          </div>
+          <div class="list-action-icons">
+            <a [routerLink]="['/dragon-list', dragon.id, 'edit']" class="mr-3">
+              <span class="fa fa-edit align-middle dark-blue"></span>
+            </a>
+            <a (click)="deleteDragon(dragon.id)" class="delete-dragon">
+              <span class="fa fa-trash"></span>
+            </a>
+          </div>
+        </li>
+      </ul>
+
+    </div>
+
   </div>
 </div>

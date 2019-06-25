@@ -12,10 +12,12 @@ export class DragonListComponent implements OnInit {
   dragonList: Dragon[] = [];
   error = null;
   success = null;
+  isLoading = false;
 
   constructor(private dragonService: DragonService) {}
 
   ngOnInit() {
+    this.isLoading = true;
     this.getDragons();
   }
 
@@ -24,14 +26,17 @@ export class DragonListComponent implements OnInit {
       dragons => {
         dragons.sort((prev, next) => (prev.name.toLocaleLowerCase() > next.name.toLocaleLowerCase()) ? 1 : -1);
         this.dragonList = dragons;
+        this.isLoading = false;
       },
       error => {
         this.error = `Unable to fetch dragons list! ${error.error}`;
+        this.isLoading = false;
       }
     )
   }
 
   deleteDragon(id: string) {
+    this.isLoading = true;
     this.dragonService.deleteDragon(id).subscribe(
       response => {
         this.success = `Dragon ${response.name} has been deleted!`;
@@ -39,6 +44,7 @@ export class DragonListComponent implements OnInit {
       },
       error => {
         this.error = `Unable to delete selected dragon! ${error.error}`;
+        this.isLoading = false;
       }
     );
   }

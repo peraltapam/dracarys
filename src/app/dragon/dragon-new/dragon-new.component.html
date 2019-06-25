@@ -1,14 +1,26 @@
 <div class="container">
   <div class="row">
-    <div class="register-form col-12">
-      <legend>Register New Dragon</legend>
-      <div *ngIf="showSuccessAlert" class="alert alert-success" role="alert">
-        Dragon successfully registered!
+
+    <!-- spinner -->
+    <div class="col-12" *ngIf="isLoading">
+      <app-loading-spinner></app-loading-spinner>
+    </div>
+
+    <div class="register-form col-12 col-sm-8 col-lg-6 mx-auto">
+      <h4>Register New Dragon</h4>
+
+      <!-- alert messages -->
+      <div *ngIf="success" class="alert alert-success" role="alert">
+        <a class="close ml-1" (click)="reset('success')">&times;</a>
+        <span>{{ success }} </span>
       </div>
       <div *ngIf="error" class="alert alert-danger" role="alert">
-        <span>Unable to register Dragon!</span>
+        <a class="close ml-1" (click)="reset('error')">&times;</a>
+        <span>Unable to register dragon!</span>
         <span class="ml-1">{{ error }}</span>
       </div>
+
+      <!-- register form -->
       <form (ngSubmit)="registerHandler(registerForm)" #registerForm="ngForm">
         <div class="form-group">
           <label for="name">Name</label>
@@ -42,5 +54,6 @@
         [disabled]="!registerForm.valid">Register</button>
       </form>
     </div>
+
   </div>
 </div>

@@ -11,16 +11,18 @@ import { Dragon } from '../dragon.model';
 })
 export class DragonNewComponent implements OnInit {
   dragonData: Dragon;
-  showSuccessAlert = null;
+  success = null;
   error = null;
+  isLoading = false;
 
   constructor(private dragonService: DragonService) { }
 
   ngOnInit() {
-    this.showSuccessAlert = null;
+    this.success = null;
   }
 
   registerHandler(form: NgForm) {
+    this.isLoading = true;
     this.dragonData = {
       name: form.value.name,
       type: form.value.dragonType
@@ -28,15 +30,25 @@ export class DragonNewComponent implements OnInit {
     this.dragonService.createDragon(JSON.stringify(this.dragonData)).subscribe(
       (response) => {
         if(response && response.id) {
-          this.showSuccessAlert = true;
+          this.success = `Dragon ${ response.name } successfully registered!`;
           form.reset();
         } else {
           this.error = 'Invalid response';
         }
+        this.isLoading = false;
       },
       error => {
         this.error = error.error;
+        this.isLoading = false;
       }
     );
+  }
+
+  reset(type: string) {
+    if(type === 'success') {
+      this.success = null;
+    } else {
+      this.error = null;
+    }
   }
 }

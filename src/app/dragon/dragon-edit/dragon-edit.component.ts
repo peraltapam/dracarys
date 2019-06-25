@@ -18,10 +18,12 @@ export class DragonEditComponent implements OnInit {
   success = null;
   error = null;
   isNotEdited = null;
+  isLoading = false;
 
   constructor(private dragonService: DragonService, private route: ActivatedRoute) { }
 
   ngOnInit() {
+    this.isLoading = true;
     this.selectedId = this.route.snapshot.params['id'];
     this.getDragonDetails(this.selectedId);
   }
@@ -30,14 +32,17 @@ export class DragonEditComponent implements OnInit {
     this.dragonService.getDragonDetails(id).subscribe(
       response => {
         this.selectedDragon = response;
+        this.isLoading = false;
       },
       error => {
         this.error = `Unable to fetch dragon details! ${error.error}`;
+        this.isLoading = false;
       }
     )
   }
 
   editHandler(form: NgForm) {
+    this.isLoading = true;
     if(form.value.name === this.selectedDragon.name &&
        form.value.dragonType === this.selectedDragon.type)
     {
@@ -58,14 +63,13 @@ export class DragonEditComponent implements OnInit {
             name: response.name,
             type: response.type
           }
-          this.resetForm(form);
         } else {
           this.error = 'Invalid response';
         }
          this.resetForm(form);
       },
       error => {
-        this.error = error.error;
+        this.error = `Unable to edit Dragon! ${error.error}`;
          this.resetForm(form);
       }
     );
@@ -76,6 +80,7 @@ export class DragonEditComponent implements OnInit {
       name: this.selectedDragon.name,
       dragonType: this.selectedDragon.type
     });
+    this.isLoading = false;
   }
 
   reset(type: string) {
