@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { Dragon } from '../dragon.model';
-import { DragonService } from '../../dragon.service';
+import { DragonService } from '../dragon.service';
 
 @Component({
   selector: 'app-dragon-detail',

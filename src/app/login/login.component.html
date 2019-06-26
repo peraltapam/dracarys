@@ -11,6 +11,7 @@
 
       <!-- alert messages -->
       <div *ngIf="showAlert" class="alert alert-danger" role="alert">
+        <a class="close ml-1" (click)="reset()">&times;</a>
         Username or password invalid!
       </div>
 

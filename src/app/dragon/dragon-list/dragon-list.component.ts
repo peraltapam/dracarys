@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { Dragon } from '../dragon.model';
-import { DragonService } from '../../dragon.service';
+import { DragonService } from '../dragon.service';
 
 @Component({
   selector: 'app-dragon-list',
@@ -29,7 +29,7 @@ export class DragonListComponent implements OnInit {
         this.isLoading = false;
       },
       error => {
-        this.error = `Unable to fetch dragons list! ${error.error}`;
+        this.error = `Unable to fetch dragons list!`;
         this.isLoading = false;
       }
     )
@@ -43,7 +43,7 @@ export class DragonListComponent implements OnInit {
         this.getDragons();
       },
       error => {
-        this.error = `Unable to delete selected dragon! ${error.error}`;
+        this.error = `Unable to delete selected dragon!`;
         this.isLoading = false;
       }
     );

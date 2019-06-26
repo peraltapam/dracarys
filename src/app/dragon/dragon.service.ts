@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
-import { Dragon } from './dragon/dragon.model';
+import { Dragon } from './dragon.model';
 
 @Injectable({
   providedIn: 'root'

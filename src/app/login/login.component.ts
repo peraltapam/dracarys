@@ -28,4 +28,8 @@ export class LoginComponent implements OnInit {
     this.isLoading = false;
   }
 
+  reset() {
+    this.showAlert = false; 
+  }
+
 }

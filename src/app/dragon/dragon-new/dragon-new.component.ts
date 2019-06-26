@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 
-import { DragonService } from '../../dragon.service';
+import { DragonService } from '../dragon.service';
 import { Dragon } from '../dragon.model';
 
 @Component({

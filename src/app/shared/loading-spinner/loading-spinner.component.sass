@@ -3,10 +3,11 @@ $colorBlue: #212529
 .backdrop
   background-color: white
   opacity: .7
-  height: 59vh
+  height: calc(100vh - 120px)
   position: absolute
   width: 100%
   z-index: 99
+  left: 0
 
 .lds-ring
   display: inline-block
@@ -16,7 +17,9 @@ $colorBlue: #212529
   z-index: 100
   margin-top: 20vh
   text-align: left
-  margin-left: 45%
+  margin-left: 42vw
+  @media screen and (max-width: 768px)
+    margin-left: 35vw
   div
     box-sizing: border-box
     display: block

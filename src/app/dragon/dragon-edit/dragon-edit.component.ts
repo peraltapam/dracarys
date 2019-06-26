@@ -3,7 +3,7 @@ import { NgForm } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 
 import { Dragon } from '../dragon.model';
-import { DragonService } from '../../dragon.service';
+import { DragonService } from '../dragon.service';
 
 
 @Component({
