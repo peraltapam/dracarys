@@ -10,14 +10,12 @@
       <h4>Dragons List</h4>
 
       <!-- alert messages -->
-      <div *ngIf="error" class="alert alert-danger" role="alert">
-        <a class="close ml-1" (click)="reset('error')">&times;</a>
-        <span>{{ error }}</span>
-      </div>
-      <div *ngIf="success" class="alert alert-success" role="alert">
-        <a class="close ml-1" (click)="reset('success')">&times;</a>
-        <span>{{ success }}</span>
-      </div>
+      <app-alert-messages
+        *ngIf="alert"
+        [message]="alert"
+        [isError]="isError"
+        (close)="resetAlert()">
+      </app-alert-messages>
 
       <!-- dragons list -->
       <ul class="list-group">

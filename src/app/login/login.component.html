@@ -10,10 +10,12 @@
       <h4>Login</h4>
 
       <!-- alert messages -->
-      <div *ngIf="showAlert" class="alert alert-danger" role="alert">
-        <a class="close ml-1" (click)="reset()">&times;</a>
-        Username or password invalid!
-      </div>
+      <app-alert-messages
+        *ngIf="alert"
+        [message]="alert"
+        [isError]="true"
+        (close)="resetAlert()">
+      </app-alert-messages>
 
       <!-- login form -->
       <form (ngSubmit)="loginHandler(loginForm)" #loginForm="ngForm">

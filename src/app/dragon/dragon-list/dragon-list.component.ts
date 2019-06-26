@@ -10,14 +10,15 @@ import { DragonService } from '../dragon.service';
 })
 export class DragonListComponent implements OnInit {
   dragonList: Dragon[] = [];
-  error = null;
-  success = null;
+  alert = null;
+  isError = null;
   isLoading = false;
 
   constructor(private dragonService: DragonService) {}
 
   ngOnInit() {
     this.isLoading = true;
+    this.alert = null;
     this.getDragons();
   }
 
@@ -29,7 +30,8 @@ export class DragonListComponent implements OnInit {
         this.isLoading = false;
       },
       error => {
-        this.error = `Unable to fetch dragons list!`;
+        this.alert = `Unable to fetch dragons list!`;
+        this.isError = true;
         this.isLoading = false;
       }
     )
@@ -39,21 +41,19 @@ export class DragonListComponent implements OnInit {
     this.isLoading = true;
     this.dragonService.deleteDragon(id).subscribe(
       response => {
-        this.success = `Dragon ${response.name} has been deleted!`;
+        this.alert = `Dragon ${response.name} has been deleted!`;
+        this.isError = false;
         this.getDragons();
       },
       error => {
-        this.error = `Unable to delete selected dragon!`;
+        this.alert = `Unable to delete selected dragon!`;
+        this.isError = true;
         this.isLoading = false;
       }
     );
   }
 
-  reset(type: string) {
-    if(type === 'success') {
-      this.success = null;
-    } else {
-      this.error = null;
-    }
+  resetAlert() {
+    this.alert = null;
   }
 }

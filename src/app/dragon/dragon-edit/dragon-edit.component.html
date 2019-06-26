@@ -7,11 +7,12 @@
     </div>
 
     <!-- navigate back link -->
-    <a *ngIf="selectedDragon"
-      [routerLink]="['/dragon-list', selectedDragon.id]"
+    <a *ngIf="selectedId"
+      [routerLink]="['/dragon-list', selectedId]"
       class="back-link col-12 mb-4"
     >
-      <i class="icon fa fa-chevron-left"></i>Dragons Details
+      <i class="icon fa fa-chevron-left mr-2"></i>
+      Dragons Details
     </a>
 
     <!-- container for details form -->
@@ -19,14 +20,12 @@
       <h4>Edit Dragon</h4>
 
       <!-- alert messages -->
-      <div *ngIf="error" class="alert alert-danger col-12" role="alert">
-        <a class="close ml-1" (click)="reset('error')">&times;</a>
-        <span class="ml-1">{{ error }}</span>
-      </div>
-      <div *ngIf="success" class="alert alert-success col-12" role="alert">
-          <a class="close ml-1" (click)="reset('success')">&times;</a>
-        <span>{{ success }}</span>
-      </div>
+      <app-alert-messages
+        *ngIf="alert"
+        [message]="alert"
+        [isError]="isError"
+        (close)="resetAlert()">
+      </app-alert-messages>
 
       <!-- details form --> 
       <form *ngIf="selectedDragon" (ngSubmit)="editHandler(editForm)" #editForm="ngForm">
@@ -41,18 +40,19 @@
             #name="ngModel">
         </div>
         <div class="form-group">
-          <label for="dragonType">Type</label>
+          <label for="type">Type</label>
           <input
             type="text"
             class="form-control"
-            name="dragonType"
+            name="type"
             ngModel
             [ngModel]="selectedDragon.type"
-            #dragonType="ngModel">
+            #type="ngModel">
         </div>
         <span
           class="invalid-feedback mb-4"
-          *ngIf="isNotEdited">Please edit at least one field.
+          *ngIf="isNotEdited && editForm.pristine">
+          Please edit at least one field.
         </span>
         <button 
         type="submit"

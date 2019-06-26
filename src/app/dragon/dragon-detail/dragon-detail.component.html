@@ -1,5 +1,6 @@
 <div class="container">
   <div class="row">
+
     <!-- spinner -->
     <div class="col-12" *ngIf="isLoading">
       <app-loading-spinner></app-loading-spinner>
@@ -8,47 +9,50 @@
     <!-- navigate back link -->
     <a routerLink="/dragon-list" class="back-link col-12 mb-4"><i class="icon fa fa-chevron-left"></i>Dragons List</a>
 
-    <!-- alert messages -->
-    <div class="col-12">
-      <div *ngIf="error" class="alert alert-danger col-12" role="alert">
-        <a class="close ml-1" (click)="reset('error')">&times;</a>
-        <span>{{ error }}</span>
-      </div>
-      <div *ngIf="success" class="alert alert-dismissible alert-success col-12" role="alert">
-        <a class="close ml-1" (click)="reset('success')">&times;</a>
-        <span>{{ success }}</span>
-      </div>
-    </div>
-
-    <!-- details form -->
     <div class="col-12 col-sm-8 col-lg-6 mx-auto">
+
+      <!-- heading and action links -->
       <div class="col-12 p-0">
         <h4>Dragon Details</h4>
-        <a [routerLink]="['edit']" class="ml-2"><span class="mr-2 ml-2 fa fa-edit action-icon align-text-top"></span></a>
-        <a (click)="deleteDragon(dragonDetail.id)" class="delete-dragon"><span class="ml-2 fa fa-trash action-icon align-baseline"></span></a>
+        <div *ngIf="!alert || (alert && !isError)" class="d-inline-block">
+          <a [routerLink]="['edit']" class="ml-2">
+            <span class="mr-2 ml-2 fa fa-edit action-icon align-text-top"></span>
+          </a>
+          <a (click)="deleteDragon(dragonDetail.id)" class="delete-dragon">
+            <span class="ml-2 fa fa-trash action-icon align-baseline"></span>
+          </a>
+        </div>
       </div>
-      <form *ngIf="dragonDetail">
-        <fieldset>
-          <div class="form-group row">
-            <label for="creation-date" class="col-5 col-sm-4 col-form-label pl-0">Creation date: </label>
-            <div class="col-7 col-sm-8 form-info">
-              <span>{{ dragonDetail.createdAt | date }}</span>
-            </div>
+
+      <!-- alert messages -->
+      <app-alert-messages
+        *ngIf="alert"
+        [message]="alert"
+        [isError]="isError"
+        (close)="resetAlert()">
+      </app-alert-messages>
+      
+      <!-- details information list -->
+      <div *ngIf="dragonDetail">
+        <div class="item mx-0 row">
+          <label for="creation-date" class="col-5 col-md-4 col-lg-6 detail-label pl-0">Creation date: </label>
+          <div class="col-7 col-md-8 col-lg-6 info">
+            <span>{{ dragonDetail.createdAt | date }}</span>
           </div>
-          <div class="form-group row">
-            <label for="dragon-name" class="col-5 col-sm-4 col-form-label pl-0">Name: </label>
-            <div class="col-7 col-sm-8 form-info">
-              <span>{{ dragonDetail.name }}</span>
-            </div>
+        </div>
+        <div class="item mx-0 row">
+          <label for="dragon-name" class="col-5 col-md-4 col-lg-6 detail-label pl-0">Name: </label>
+          <div class="col-7 col-md-8 col-lg-6 info">
+            <span>{{ dragonDetail.name }}</span>
           </div>
-          <div class="form-group row">
-            <label for="dragon-type" class="col-5 col-sm-4 col-form-label pl-0">Type: </label>
-            <div class="col-7 col-sm-8 form-info">
-              <span>{{ dragonDetail.type }}</span>
-            </div>
+        </div>
+        <div class="item mx-0 row">
+          <label for="dragon-type" class="col-5 col-md-4 col-lg-6 detail-label pl-0">Type: </label>
+          <div class="col-7 col-md-8 col-lg-6 info">
+            <span>{{ dragonDetail.type }}</span>
           </div>
-        </fieldset>
-      </form>
+        </div>
+      </div>
     </div>
 
   </div>

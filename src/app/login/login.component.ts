@@ -9,27 +9,28 @@ import { AuthService } from './auth/auth.service';
   styleUrls: ['./login.component.sass']
 })
 export class LoginComponent implements OnInit {
-  showAlert = false;
+  alert = null;
   isLoading = false;
 
   constructor(private router: Router, private authService: AuthService) { }
 
   ngOnInit() {
+    this.alert = null;
   }
 
   loginHandler(form: NgForm) {
     this.isLoading = true;
     if (this.authService.validateLogin(form.value.username, form.value.password)) {
       this.router.navigate(['/dragon-list']);
-      this.showAlert = false;
+      this.alert = null;
     } else {
-      this.showAlert = true;
+      this.alert = 'Username or password invalid!';
     }
     this.isLoading = false;
   }
 
-  reset() {
-    this.showAlert = false; 
+  resetAlert() {
+    this.alert = null; 
   }
 
 }

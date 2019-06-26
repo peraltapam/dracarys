@@ -10,15 +10,12 @@
       <h4>Register New Dragon</h4>
 
       <!-- alert messages -->
-      <div *ngIf="success" class="alert alert-success" role="alert">
-        <a class="close ml-1" (click)="reset('success')">&times;</a>
-        <span>{{ success }} </span>
-      </div>
-      <div *ngIf="error" class="alert alert-danger" role="alert">
-        <a class="close ml-1" (click)="reset('error')">&times;</a>
-        <span>Unable to register dragon!</span>
-        <span class="ml-1">{{ error }}</span>
-      </div>
+      <app-alert-messages
+        *ngIf="alert"
+        [message]="alert"
+        [isError]="isError"
+        (close)="resetAlert()">
+      </app-alert-messages>
 
       <!-- register form -->
       <form (ngSubmit)="registerHandler(registerForm)" #registerForm="ngForm">

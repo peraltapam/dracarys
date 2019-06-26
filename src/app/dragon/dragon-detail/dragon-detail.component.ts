@@ -12,14 +12,16 @@ import { DragonService } from '../dragon.service';
 export class DragonDetailComponent implements OnInit {
   dragonDetail: Dragon;
   dragonId: string;
-  error = null;
-  success = null;
+  alert = null;
+  isError = null;
   isLoading = false;
 
   constructor(private route: ActivatedRoute, private dragonService: DragonService) { }
 
   ngOnInit() {
     this.isLoading = true;
+    this.alert = null;
+
     this.dragonId = this.route.snapshot.params['id'];
     this.getDragonDetails(this.dragonId);
   }
@@ -31,7 +33,8 @@ export class DragonDetailComponent implements OnInit {
         this.isLoading = false;
       },
       error => {
-        this.error = `Unable to fetch dragon details! ${error.error}`;
+        this.alert = 'Unable to fetch dragon details!';
+        this.isError = true;
         this.isLoading = false;
       }
     )
@@ -41,22 +44,20 @@ export class DragonDetailComponent implements OnInit {
     this.isLoading = true;
     this.dragonService.deleteDragon(id).subscribe(
       response => {
-        this.success = `Dragon ${response.name} has been deleted!`;
+        this.alert = `Dragon ${response.name} has been deleted!`;
+        this.isError = false;
         this.isLoading = false;
       },
       error => {
-        this.error = `Unable to delete selected dragon! ${error.error}`;
+        this.alert = 'Unable to delete selected dragon!';
+        this.isError = true;
         this.isLoading = false;
       }
     );
   }
 
-  reset(type: string) {
-    if(type === 'success') {
-      this.success = null;
-    } else {
-      this.error = null;
-    }
+  resetAlert() {
+    this.alert = null;
   }
 
 }
