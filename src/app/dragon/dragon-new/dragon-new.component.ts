@@ -21,12 +21,17 @@ export class DragonNewComponent implements OnInit {
     this.alert = null;
   }
 
+  // handle form information
   registerHandler(form: NgForm) {
     this.isLoading = true;
+
+    // format data to be sent to api
     this.dragonData = {
       name: form.value.name,
       type: form.value.dragonType
     }
+
+    // send create dragon request
     this.dragonService.createDragon(JSON.stringify(this.dragonData)).subscribe(
       (response) => {
         if(response && response.id) {
@@ -47,6 +52,7 @@ export class DragonNewComponent implements OnInit {
     );
   }
 
+  // clear alert message
   resetAlert() {
     this.alert = null;
   }

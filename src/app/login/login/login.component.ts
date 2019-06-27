@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NgForm, FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import {Router} from '@angular/router';
 import { AuthService } from '../auth/auth.service';
 
@@ -26,9 +26,12 @@ export class LoginComponent implements OnInit {
     this.alert = null;
   }
 
+  // handle login form submition
   loginHandler() {
     const form = this.loginForm.value;
     this.isLoading = true;
+
+    // validate user authentication
     if (this.authService.validateLogin(form.username, form.password)) {
       this.router.navigate(['/dragon-list']);
       this.alert = null;
@@ -38,6 +41,7 @@ export class LoginComponent implements OnInit {
     this.isLoading = false;
   }
 
+  // clear alert message
   resetAlert() {
     this.alert = null; 
   }

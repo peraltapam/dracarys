@@ -12,6 +12,7 @@ import { DragonService } from '../dragon.service';
 export class DragonDetailComponent implements OnInit {
   dragonDetail: Dragon;
   dragonId: string;
+
   alert = null;
   isError = null;
   isLoading = false;
@@ -22,10 +23,12 @@ export class DragonDetailComponent implements OnInit {
     this.isLoading = true;
     this.alert = null;
 
+    // retrieve dragon id from url and load data
     this.dragonId = this.route.snapshot.params['id'];
     this.getDragonDetails(this.dragonId);
   }
 
+  // request dragon detail from api
   getDragonDetails(id: string) {
     this.dragonService.getDragonDetails(id).subscribe(
       response => {
@@ -40,8 +43,10 @@ export class DragonDetailComponent implements OnInit {
     )
   }
 
-  deleteDragon(id: string) {
+  // make delete request to api
+  onDeleteDragon(id: string) {
     this.isLoading = true;
+
     this.dragonService.deleteDragon(id).subscribe(
       response => {
         this.alert = `Dragon ${response.name} has been deleted!`;
@@ -56,6 +61,7 @@ export class DragonDetailComponent implements OnInit {
     );
   }
 
+  // clear alert message
   resetAlert() {
     this.alert = null;
   }

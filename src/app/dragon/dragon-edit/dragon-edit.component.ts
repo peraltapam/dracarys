@@ -13,6 +13,7 @@ import { DragonService } from '../dragon.service';
 export class DragonEditComponent implements OnInit {
   selectedDragon: Dragon;
   selectedId: string;
+  // using template driven approach as exercise
   formData: NgForm;
 
   alert = null;
@@ -51,6 +52,8 @@ export class DragonEditComponent implements OnInit {
   editDragonHandler(form: NgForm) {
     this.isLoading = true;
     this.isNotEdited = false;
+    this.alert = null;
+  
     this.formData = form;
     const newData = form.value
 
@@ -61,7 +64,7 @@ export class DragonEditComponent implements OnInit {
       return;
     }
 
-    // save data to be sent to api
+    // format data to be sent to api
     const dragonData = {
       name: newData.name,
       type: newData.type
@@ -105,6 +108,8 @@ export class DragonEditComponent implements OnInit {
 
   // update form with most current dragon data values
   resetForm() {
+    if(!this.formData) { return; };
+  
     this.formData.reset({
       name: this.selectedDragon.name,
       type: this.selectedDragon.type

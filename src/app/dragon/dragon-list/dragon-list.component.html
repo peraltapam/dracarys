@@ -29,7 +29,7 @@
             <a [routerLink]="['/dragon-list', dragon.id, 'edit']" class="mr-3">
               <span class="fa fa-edit align-middle dark-blue"></span>
             </a>
-            <a (click)="deleteDragon(dragon.id)" class="delete-dragon">
+            <a (click)="onDeleteDragon(dragon.id)" class="delete-dragon">
               <span class="fa fa-trash"></span>
             </a>
           </div>

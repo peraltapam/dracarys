@@ -10,6 +10,7 @@ import { DragonService } from '../dragon.service';
 })
 export class DragonListComponent implements OnInit {
   dragonList: Dragon[] = [];
+
   alert = null;
   isError = null;
   isLoading = false;
@@ -22,7 +23,8 @@ export class DragonListComponent implements OnInit {
     this.getDragons();
   }
 
-  private getDragons() {
+  // retrieve dragon list from api
+  getDragons() {
     this.dragonService.getDragons().subscribe(
       dragons => {
         dragons.sort((prev, next) => (prev.name.toLocaleLowerCase() > next.name.toLocaleLowerCase()) ? 1 : -1);
@@ -37,8 +39,10 @@ export class DragonListComponent implements OnInit {
     )
   }
 
-  deleteDragon(id: string) {
+  // make delete request to api
+  onDeleteDragon(id: string) {
     this.isLoading = true;
+
     this.dragonService.deleteDragon(id).subscribe(
       response => {
         this.alert = `Dragon ${response.name} has been deleted!`;
@@ -53,6 +57,7 @@ export class DragonListComponent implements OnInit {
     );
   }
 
+  // clear alert message
   resetAlert() {
     this.alert = null;
   }
