@@ -14,7 +14,7 @@
       <!-- heading and action links -->
       <div class="col-12 p-0">
         <h4>Dragon Details</h4>
-        <div *ngIf="!alert || (alert && !isError)" class="d-inline-block">
+        <div *ngIf="!alert || (alert && isError)" class="d-inline-block">
           <a [routerLink]="['edit']" class="ml-2">
             <span class="mr-2 ml-2 fa fa-edit action-icon align-text-top"></span>
           </a>
