@@ -26,43 +26,34 @@ Notes:
 * Components used by all modules are stored under shared directory.
 * Theme css has been placed on the assets folder and imported in angular.json
 
-
 app
-│   app-routing.model
-│   app.component
-│   app.model
-│
-└───components
-│   │
-│   └───footer.component
-│   │
-│   └───header.component
-│   
-└───dragon.module
-│   │   dragon.model
-│   │   dragon.service
-│   │
-│   └───dragon-detail.component
-│   │
-│   └───dragon-edit.component
-│   │
-│   └───dragon-list.component
-│   │
-│   └───dragon-new.component
-│
-└───login.module
-│   │
-│   └───auth
-│   │   │   auth-guard.service
-│   │   │   auth.service
-│   │
-│   └───login.component
-│
-└───shared.module
-    │
-    └───alert-messages.component
-    │
-    └───loading-spinner.component
+>app-routing.model
+>app.component
+>app.model
+ >
+>components
+>>footer.component
+>>header.component
+>
+>dragon.module
+>>dragon.model
+>>dragon.service
+>
+>>dragon-detail.component
+>>dragon-edit.component
+>>dragon-list.component
+>>dragon-new.component
+>
+>login.module
+>>auth
+>>>auth-guard.service
+>>>auth.service
+>>
+>>login.component
+>
+>shared.module
+>>alert-messages.component
+>>loading-spinner.component
 
 assets
-│   bootswatch.theme
+>bootswatch.theme
