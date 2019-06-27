@@ -18,32 +18,26 @@
       </app-alert-messages>
 
       <!-- login form -->
-      <form (ngSubmit)="loginHandler(loginForm)" #loginForm="ngForm">
+      <form [formGroup]="loginForm" (ngSubmit)="loginHandler()">
         <div class="form-group">
           <label for="username">Username</label>
           <input 
             type="text"
             class="form-control"
-            name="username"
-            ngModel
-            required
-            #username="ngModel">
+            formControlName="username">
           <span
             class="invalid-feedback"
-            *ngIf="!username.valid && username.touched">Please enter your username.</span>
+            *ngIf="loginForm.get('username').invalid && loginForm.get('username').touched">Please enter a valid username.</span>
         </div>
         <div class="form-group">
           <label for="password">Password</label>
           <input
             type="password"
             class="form-control"
-            name="password"
-            ngModel
-            required
-            #password="ngModel">
+            formControlName="password">
             <span
             class="invalid-feedback"
-            *ngIf="!password.valid && password.touched">Please enter your password.</span>
+            *ngIf="loginForm.get('password').invalid && loginForm.get('password').touched">Please enter a valid password.</span>
         </div>
         <button 
         type="submit"

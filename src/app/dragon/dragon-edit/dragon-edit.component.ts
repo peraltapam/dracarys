@@ -55,7 +55,7 @@ export class DragonEditComponent implements OnInit {
     const newData = form.value
 
     // Check if data inserted is different than original data
-    if(this.checkEditedForm(newData, this.selectedDragon)) {
+    if(this.isDataEqual(newData, this.selectedDragon)) {
       this.isNotEdited = true;
       this.resetForm();
       return;
@@ -75,7 +75,7 @@ export class DragonEditComponent implements OnInit {
     this.dragonService.editDragon(this.selectedId, JSON.stringify(data)).subscribe(
       (response) => {
         if(response && response.id) {
-          this.editSuccessHandler(response);
+          this.editRequestSuccessHandler(response);
         } else {
           this.alert = 'Invalid response';
         }
@@ -90,12 +90,12 @@ export class DragonEditComponent implements OnInit {
   }
 
   // return boolean to indicate if new data is equal to the old one
-  checkEditedForm(newData: Dragon, oldData: Dragon) {
+  isDataEqual(newData: Dragon, oldData: Dragon) {
     return newData.name === oldData.name && newData.type === oldData.type;
   }
 
   // update selected dragon data
-  editSuccessHandler(response: Dragon) {
+  editRequestSuccessHandler(response: Dragon) {
     this.alert = 'Dragon successfully edited!';
     this.selectedDragon = {
       name: response.name,
