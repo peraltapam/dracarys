@@ -1,27 +1,68 @@
-# Dracarys
+# Dracarys Application
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.0.3.
+This application Creates, Reads, Updates and Deletes dragon information.
 
-## Development server
+## Technologies
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+* [Angular CLI](https://github.com/angular/angular-cli) version 8.0.3.
 
-## Code scaffolding
+* [Typescript](https://www.typescriptlang.org/) version 3.4.5.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+* [Bootstrap](https://getbootstrap.com/) version 4.3.1. - I have previous experience with version 3, so I have chosen to work with version 4 as it would be easier to learn new features than a whole new framework (like materialize, for example).
 
-## Build
+* [Font Awesome](http://fontawesome.io) version 4.7.0.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+* Sass css extension (.sass) - I have previous experience with less and sass (.scss), but I have chosen .sass to experiment.
 
-## Running unit tests
+* [Bootswatch](https://bootswatch.com/flatly/) Flatly theme.
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## File directory structure
 
-## Running end-to-end tests
+Notes:
+* I have grouped dragon components and service under the dragon module as it seemed more organized.
+* Login module groups login component and authentication services as it is the main dependent of authentication.
+* Footer and Header are group under components so that they would not be lost in the middle of the app directory.
+* I have not created a Route directory as I believe the application is not too complex and it would only store the routing model file.
+* Components used by all modules are stored under shared directory.
+* Theme css has been placed on the assets folder and imported in angular.json
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
 
-## Further help
+app
+│   app-routing.model
+│   app.component
+│   app.model
+│
+└───components
+│   │
+│   └───footer.component
+│   │
+│   └───header.component
+│   
+└───dragon.module
+│   │   dragon.model
+│   │   dragon.service
+│   │
+│   └───dragon-detail.component
+│   │
+│   └───dragon-edit.component
+│   │
+│   └───dragon-list.component
+│   │
+│   └───dragon-new.component
+│
+└───login.module
+│   │
+│   └───auth
+│   │   │   auth-guard.service
+│   │   │   auth.service
+│   │
+│   └───login.component
+│
+└───shared.module
+    │
+    └───alert-messages.component
+    │
+    └───loading-spinner.component
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+assets
+│   bootswatch.theme

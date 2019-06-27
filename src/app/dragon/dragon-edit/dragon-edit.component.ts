@@ -13,6 +13,8 @@ import { DragonService } from '../dragon.service';
 export class DragonEditComponent implements OnInit {
   selectedDragon: Dragon;
   selectedId: string;
+  formData: NgForm;
+
   alert = null;
   isError = null;
   isNotEdited = null;
@@ -29,6 +31,7 @@ export class DragonEditComponent implements OnInit {
     this.getDragonDetails(this.selectedId);
   }
 
+  // request dragon detail from api
   getDragonDetails(id: string) {
     this.dragonService.getDragonDetails(id).subscribe(
       response => {
@@ -44,15 +47,17 @@ export class DragonEditComponent implements OnInit {
     )
   }
 
-  editHandler(form: NgForm) {
+  // handle form information
+  editDragonHandler(form: NgForm) {
     this.isLoading = true;
     this.isNotEdited = false;
+    this.formData = form;
     const newData = form.value
 
     // Check if data inserted is different than original data
     if(this.checkEditedForm(newData, this.selectedDragon)) {
       this.isNotEdited = true;
-      this.resetForm(form);
+      this.resetForm();
       return;
     }
 
@@ -74,12 +79,12 @@ export class DragonEditComponent implements OnInit {
         } else {
           this.alert = 'Invalid response';
         }
-        this.resetForm(form);
+        this.resetForm();
       },
       error => {
         this.alert = 'Unable to edit Dragon!';
         this.isError = true;
-        this.resetForm(form);
+        this.resetForm();
       }
     );
   }
@@ -89,6 +94,7 @@ export class DragonEditComponent implements OnInit {
     return newData.name === oldData.name && newData.type === oldData.type;
   }
 
+  // update selected dragon data
   editSuccessHandler(response: Dragon) {
     this.alert = 'Dragon successfully edited!';
     this.selectedDragon = {
@@ -97,9 +103,9 @@ export class DragonEditComponent implements OnInit {
     }
   }
 
-  // update form with most current values
-  resetForm(form: NgForm) {
-    form.reset({
+  // update form with most current dragon data values
+  resetForm() {
+    this.formData.reset({
       name: this.selectedDragon.name,
       type: this.selectedDragon.type
     });
