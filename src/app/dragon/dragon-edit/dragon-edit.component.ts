@@ -107,12 +107,22 @@ export class DragonEditComponent implements OnInit {
   }
 
   // update form with most current dragon data values
-  resetForm() {
-    if(!this.formData) { return; };
+  resetForm(form?: NgForm) {
+
+    let currentName: string = this.selectedDragon.name,
+        currentType: string = this.selectedDragon.type;
+
+    // form object does not exist before saving for the first time
+    // todo: implement form with reactive approach
+    if(!this.formData && form) {
+      this.formData = form;
+      currentName = form.value.name;
+      currentType = form.value.type;
+    };
   
     this.formData.reset({
-      name: this.selectedDragon.name,
-      type: this.selectedDragon.type
+      name: currentName,
+      type: currentType
     });
     this.isLoading = false;
   }
