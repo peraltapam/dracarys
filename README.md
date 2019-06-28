@@ -32,17 +32,12 @@ Notes:
 app
 │   app-routing.model
 │   app.component
-│   app.model
+│   app.module
 │
-└───components
-│   │
-│   └───footer.component
-│   │
-│   └───header.component
-│   
-└───dragon.module
+└───dragon
 │   │   dragon.model
 │   │   dragon.service
+│   │   dragon.module
 │   │
 │   └───dragon-detail.component
 │   │
@@ -52,17 +47,23 @@ app
 │   │
 │   └───dragon-new.component
 │
-└───login.module
+└───login
+│   │   login.module
+│   │   login.component
 │   │
 │   └───auth
-│   │   │   auth-guard.service
-│   │   │   auth.service
-│   │
-│   └───login.component
+│       │   auth-guard.service
+│       │   auth.service
+│       │   user.model
 │
-└───shared.module
+└───shared
+    │   shared.module
     │
     └───alert-messages.component
+    │
+    └───footer.component
+    │
+    └───header.component
     │
     └───loading-spinner.component
 
