@@ -16,6 +16,8 @@ This application Creates, Reads, Updates and Deletes dragon information.
 
 * [Bootswatch](https://bootswatch.com/flatly/) Flatly theme.
 
+* Loading Spinner template and style from https://loading.io/css/
+
 ## File directory structure
 
 Notes:
