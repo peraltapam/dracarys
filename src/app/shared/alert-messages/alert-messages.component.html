@@ -1,4 +1,4 @@
-<div [className]="isError ? 'alert alert-danger' : 'alert alert-success'">
+<div [ngClass]="isError ? 'alert alert-danger' : 'alert alert-success'">
   <a class="close ml-1" (click)="onClose()">&times;</a>
   <span>{{ message }}</span>
 </div>
