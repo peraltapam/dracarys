@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 
@@ -11,10 +11,10 @@ import { DragonService } from '../dragon.service';
   styleUrls: ['./dragon-edit.component.sass']
 })
 export class DragonEditComponent implements OnInit {
+  @ViewChild('editForm', {static: false}) editForm: NgForm;
+
   selectedDragon: Dragon;
   selectedId: string;
-  // using template driven approach as exercise
-  formData: NgForm;
 
   alert = null;
   isError = null;
@@ -49,18 +49,16 @@ export class DragonEditComponent implements OnInit {
   }
 
   // handle form information
-  editDragonHandler(form: NgForm) {
+  editDragonHandler() {
     this.isLoading = true;
     this.isNotEdited = false;
     this.alert = null;
-  
-    this.formData = form;
-    const newData = form.value
+
+    const newData = this.editForm.value;
 
     // Check if data inserted is different than original data
     if(this.isDataEqual(newData, this.selectedDragon)) {
       this.isNotEdited = true;
-      this.resetForm();
       return;
     }
 
@@ -70,11 +68,11 @@ export class DragonEditComponent implements OnInit {
       type: newData.type
     }
 
-    this.sendEditRequest(form, dragonData);
+    this.sendEditRequest(dragonData);
   }
   
   // send edit dragon request
-  sendEditRequest(form: NgForm, data: Dragon) {
+  sendEditRequest(data: Dragon) {
     this.dragonService.editDragon(this.selectedId, JSON.stringify(data)).subscribe(
       (response) => {
         if(response && response.id) {
@@ -87,7 +85,7 @@ export class DragonEditComponent implements OnInit {
       error => {
         this.alert = 'Unable to edit Dragon!';
         this.isError = true;
-        this.resetForm();
+        this.isLoading = false;
       }
     );
   }
@@ -107,22 +105,10 @@ export class DragonEditComponent implements OnInit {
   }
 
   // update form with most current dragon data values
-  resetForm(form?: NgForm) {
-
-    let currentName: string = this.selectedDragon.name,
-        currentType: string = this.selectedDragon.type;
-
-    // form object does not exist before saving for the first time
-    // todo: implement form with reactive approach
-    if(!this.formData && form) {
-      this.formData = form;
-      currentName = form.value.name;
-      currentType = form.value.type;
-    };
-  
-    this.formData.reset({
-      name: currentName,
-      type: currentType
+  resetForm() {
+    this.editForm.reset({
+      name: this.selectedDragon.name,
+      type: this.selectedDragon.type
     });
     this.isLoading = false;
   }
