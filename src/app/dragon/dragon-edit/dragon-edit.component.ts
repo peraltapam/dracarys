@@ -73,7 +73,7 @@ export class DragonEditComponent implements OnInit {
   
   // send edit dragon request
   sendEditRequest(data: Dragon) {
-    this.dragonService.editDragon(this.selectedId, JSON.stringify(data)).subscribe(
+      this.dragonService.editDragon(this.selectedId, data).subscribe(
       (response) => {
         if(response && response.id) {
           this.editRequestSuccessHandler(response);

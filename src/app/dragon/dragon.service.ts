@@ -19,12 +19,12 @@ export class DragonService {
     return this.http.get<Dragon>(`${this.apiUrl}dragon/${id}`);
   }
 
-  editDragon(id: string, data: string) {
-    return this.http.put<Dragon>(`${this.apiUrl}dragon/${id}`, JSON.parse(data));
+  editDragon(id: string, data: Dragon) {
+    return this.http.put<Dragon>(`${this.apiUrl}dragon/${id}`, data);
   }
 
-  createDragon(data: string) {
-    return this.http.post<Dragon>(`${this.apiUrl}dragon`, JSON.parse(data));
+  createDragon(data: Dragon) {
+    return this.http.post<Dragon>(`${this.apiUrl}dragon`, data);
   }
 
   deleteDragon(id: string) {

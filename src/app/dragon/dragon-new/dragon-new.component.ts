@@ -32,7 +32,7 @@ export class DragonNewComponent implements OnInit {
     }
 
     // send create dragon request
-    this.dragonService.createDragon(JSON.stringify(this.dragonData)).subscribe(
+    this.dragonService.createDragon(this.dragonData).subscribe(
       (response) => {
         if(response && response.id) {
           this.isError = false;
