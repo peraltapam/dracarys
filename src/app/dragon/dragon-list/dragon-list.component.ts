@@ -41,20 +41,22 @@ export class DragonListComponent implements OnInit {
 
   // make delete request to api
   onDeleteDragon(id: string) {
-    this.isLoading = true;
-
-    this.dragonService.deleteDragon(id).subscribe(
-      response => {
-        this.alert = `Dragon ${response.name} has been deleted!`;
-        this.isError = false;
-        this.getDragons();
-      },
-      error => {
-        this.alert = `Unable to delete selected dragon!`;
-        this.isError = true;
-        this.isLoading = false;
-      }
-    );
+    if(confirm(`Are you sure you want to delete this dragon?`)) {
+      this.isLoading = true;
+  
+      this.dragonService.deleteDragon(id).subscribe(
+        response => {
+          this.alert = `Dragon ${response.name} has been deleted!`;
+          this.isError = false;
+          this.getDragons();
+        },
+        error => {
+          this.alert = `Unable to delete selected dragon!`;
+          this.isError = true;
+          this.isLoading = false;
+        }
+      );
+    }
   }
 
   // clear alert message
