@@ -7,6 +7,7 @@ import { DragonDetailComponent } from './dragon/dragon-detail/dragon-detail.comp
 import { DragonEditComponent } from './dragon/dragon-edit/dragon-edit.component';
 import { DragonNewComponent } from './dragon/dragon-new/dragon-new.component';
 import { AuthGuard } from './login/auth/auth-guard.service';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'dragon-list', pathMatch: 'full' },
@@ -14,7 +15,10 @@ const routes: Routes = [
   { path: 'register', canActivate: [AuthGuard], component: DragonNewComponent },
   { path: 'dragon-list', canActivate: [AuthGuard], component: DragonListComponent },
   { path: 'dragon-list/:id', canActivate: [AuthGuard], component: DragonDetailComponent },
-  { path: 'dragon-list/:id/edit', canActivate: [AuthGuard], component: DragonEditComponent }
+  { path: 'dragon-list/:id/edit', canActivate: [AuthGuard], component: DragonEditComponent },
+  { path: 'not-found', component: NotFoundComponent, data: { message: 'Page not found!'}},
+  // this has to be the last path on this list
+  { path: '**', redirectTo: 'not-found'}
 
 ];
 
