@@ -8,13 +8,15 @@ import { DragonDetailComponent } from './dragon-detail/dragon-detail.component';
 import { DragonEditComponent } from './dragon-edit/dragon-edit.component';
 import { DragonNewComponent } from './dragon-new/dragon-new.component';
 import { SharedModule } from '../shared/shared.module';
+import { FilterPipe } from './filter.pipe';
 
 @NgModule({
 	declarations: [
 		DragonListComponent,
 		DragonDetailComponent,
 		DragonEditComponent,
-		DragonNewComponent
+		DragonNewComponent,
+		FilterPipe
 	],
 	imports: [
 		CommonModule,

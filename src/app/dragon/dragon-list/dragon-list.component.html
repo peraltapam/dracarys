@@ -17,10 +17,17 @@
         (close)="resetAlert()">
       </app-alert-messages>
 
+      <!-- filter by name input -->
+      <div class="form-group col-12 p-0" *ngIf="dragonList && dragonList.length">
+        <span class="col-6">Filter by name:</span>
+        <input type="text" class="form-control d-inline col-6" [(ngModel)]="filteredName">
+      </div>
+      <hr>
+
       <!-- dragons list -->
       <ul class="list-group">
         <li class="list-group-item d-flex justify-content-between align-items-center"
-            *ngFor="let dragon of dragonList"
+            *ngFor="let dragon of dragonList | filter:filteredName:'name'"
         >
           <div class="name-link">
             <a [routerLink]="['/dragon-list', dragon.id]"> {{ dragon.name }} </a>
