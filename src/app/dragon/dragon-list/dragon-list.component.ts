@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { Dragon } from '../dragon.model';
 import { DragonService } from '../dragon.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-dragon-list',
@@ -15,12 +16,17 @@ export class DragonListComponent implements OnInit {
   isError = null;
   isLoading = false;
 
-  constructor(private dragonService: DragonService) {}
+  constructor(private dragonService: DragonService, private route: ActivatedRoute) {}
 
   ngOnInit() {
     this.isLoading = true;
     this.alert = null;
-    this.getDragons();
+
+    this.route.data.subscribe(data => {
+      this.dragonList = data[0];
+      this.sortList();
+    });
+    //todo: adding resolvers breaks the current spinner logic. Implement fix.
   }
 
   // retrieve dragon list from api
@@ -62,5 +68,10 @@ export class DragonListComponent implements OnInit {
   // clear alert message
   resetAlert() {
     this.alert = null;
+  }
+
+  // sort dragon list alphabetically
+  sortList() {
+    this.dragonList.sort((prev, next) => (prev.name.toLocaleLowerCase() > next.name.toLocaleLowerCase()) ? 1 : -1);
   }
 }

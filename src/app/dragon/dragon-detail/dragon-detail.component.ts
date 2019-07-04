@@ -23,24 +23,15 @@ export class DragonDetailComponent implements OnInit {
     this.isLoading = true;
     this.alert = null;
 
-    // retrieve dragon id from url and load data
-    this.dragonId = this.route.snapshot.params['id'];
-    this.getDragonDetails(this.dragonId);
-  }
-
-  // request dragon detail from api
-  getDragonDetails(id: string) {
-    this.dragonService.getDragonDetails(id).subscribe(
-      response => {
-        this.dragonDetail = response;
-        this.isLoading = false;
-      },
-      error => {
+    this.route.data.subscribe(data => {
+      if (data[0].error) {
         this.alert = 'Unable to fetch dragon details!';
         this.isError = true;
-        this.isLoading = false;
+      } else {
+        this.dragonDetail = data[0];
       }
-    )
+    });
+    //todo: adding resolvers breaks the current spinner logic. Implement fix.
   }
 
   // make delete request to api
