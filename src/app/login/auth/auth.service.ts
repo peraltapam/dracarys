@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 
 import { User } from './user.model';
 
@@ -7,12 +8,12 @@ export class AuthService {
 	// fake user data
 	authUser: User = { username: 'dany', password: 'drogon' };
 
-	loggedIn = false;
+	loggedIn = new BehaviorSubject<boolean>(false);
 
 	isAuthenticated() {
 		const promise = new Promise(
 			resolve => {
-				resolve(this.loggedIn);
+				resolve(this.loggedIn.value);
 			}
 		);
 		return promise;
@@ -22,14 +23,23 @@ export class AuthService {
 		if(username === this.authUser.username && password === this.authUser.password) {
 			this.login();
 		}
-		return this.loggedIn;
+		return this.loggedIn.value;
+	}
+
+	autoLogin() {
+		const user = localStorage.getItem('userData');
+		if(user) {
+			this.loggedIn.next(true);
+		}
 	}
 
 	login() {
-		this.loggedIn = true;
+		localStorage.setItem('userData', JSON.stringify(this.authUser.username));
+		this.loggedIn.next(true);
 	}
 
 	logout() {
-		this.loggedIn = false;
+		localStorage.removeItem('userData');
+		this.loggedIn.next(false);
 	}
 }

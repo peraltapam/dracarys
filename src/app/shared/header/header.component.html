@@ -1,10 +1,10 @@
-<nav class="navbar navbar-expand-md navbar-dark bg-primary">
+<nav class="navbar navbar-expand-sm navbar-dark bg-primary">
   <a class="navbar-brand" routerLink="/">Dracarys Application</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#dracarys-navbar" aria-controls="dracarys-navbar" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
 
-  <div class="collapse navbar-collapse" id="dracarys-navbar">
+  <div class="collapse navbar-collapse" id="dracarys-navbar" *ngIf="isUserLoggedIn">
     <ul class="navbar-nav mr-auto ml-4">
       <li class="nav-item" routerLinkActive="active">
         <a class="nav-link" routerLink="dragon-list">Dragon List</a>
@@ -16,5 +16,8 @@
         <a class="nav-link" routerLink="login" (click)="logoutHandler()">Log out</a>
       </li>
     </ul>
+    <div class="pull-right">
+      <a style="color: #18BC9C">Welcome, Dany</a>
+    </div>
   </div>
 </nav>

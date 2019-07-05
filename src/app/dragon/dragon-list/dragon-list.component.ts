@@ -25,6 +25,7 @@ export class DragonListComponent implements OnInit {
     this.route.data.subscribe(data => {
       this.dragonList = data[0];
       this.sortList();
+      this.isLoading = false;
     });
     //todo: adding resolvers breaks the current spinner logic. Implement fix.
   }

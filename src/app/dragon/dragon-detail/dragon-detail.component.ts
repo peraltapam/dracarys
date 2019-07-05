@@ -30,6 +30,7 @@ export class DragonDetailComponent implements OnInit {
       } else {
         this.dragonDetail = data[0];
       }
+      this.isLoading = false;
     });
     //todo: adding resolvers breaks the current spinner logic. Implement fix.
   }
