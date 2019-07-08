@@ -15,6 +15,7 @@ export class DragonListComponent implements OnInit {
   alert = null;
   isError = null;
   isLoading = false;
+  filteredName:string;
 
   constructor(private dragonService: DragonService, private route: ActivatedRoute) {}
 
