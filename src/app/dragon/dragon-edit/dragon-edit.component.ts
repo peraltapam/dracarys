@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+import { Store } from '@ngrx/store';
 
 import { Dragon } from '../dragon.model';
 import { DragonService } from '../dragon.service';
@@ -21,7 +22,11 @@ export class DragonEditComponent implements OnInit {
   isNotEdited = null;
   isLoading = false;
 
-  constructor(private dragonService: DragonService, private route: ActivatedRoute) { }
+  constructor(
+    private dragonService: DragonService,
+    private route: ActivatedRoute,
+    private store: Store<{dragons: {dragons: Dragon[]}}>
+  ) { }
 
   ngOnInit() {
     this.isLoading = true;

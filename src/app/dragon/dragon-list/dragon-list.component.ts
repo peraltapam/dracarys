@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
 
 import { Dragon } from '../dragon.model';
 import { DragonService } from '../dragon.service';
-import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-dragon-list',
@@ -10,41 +12,48 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./dragon-list.component.sass']
 })
 export class DragonListComponent implements OnInit {
-  dragonList: Dragon[] = [];
+  // dragonList: Dragon[] = [];
+  dragonList: Observable<{dragons:  Dragon[]}>;
 
   alert = null;
   isError = null;
   isLoading = false;
   filteredName:string;
 
-  constructor(private dragonService: DragonService, private route: ActivatedRoute) {}
+  constructor(
+    private dragonService: DragonService,
+    private route: ActivatedRoute,
+    private store: Store<{dragons: {dragons: Dragon[] }}>
+  ) {}
 
   ngOnInit() {
-    this.isLoading = true;
+    // this.isLoading = true;
     this.alert = null;
 
-    this.route.data.subscribe(data => {
-      this.dragonList = data[0];
-      this.sortList();
-      this.isLoading = false;
-    });
+    this.dragonList = this.store.select('dragons');
+
+    // this.route.data.subscribe(data => {
+    //   this.dragonList = data[0];
+    //   this.sortList();
+    //   this.isLoading = false;
+    // });
     //todo: adding resolvers breaks the current spinner logic. Implement fix.
   }
 
   // retrieve dragon list from api
   getDragons() {
-    this.dragonService.getDragons().subscribe(
-      dragons => {
-        dragons.sort((prev, next) => (prev.name.toLocaleLowerCase() > next.name.toLocaleLowerCase()) ? 1 : -1);
-        this.dragonList = dragons;
-        this.isLoading = false;
-      },
-      error => {
-        this.alert = `Unable to fetch dragons list!`;
-        this.isError = true;
-        this.isLoading = false;
-      }
-    )
+    // this.dragonService.getDragons().subscribe(
+    //   dragons => {
+    //     dragons.sort((prev, next) => (prev.name.toLocaleLowerCase() > next.name.toLocaleLowerCase()) ? 1 : -1);
+    //     this.dragonList = dragons;
+    //     this.isLoading = false;
+    //   },
+    //   error => {
+    //     this.alert = `Unable to fetch dragons list!`;
+    //     this.isError = true;
+    //     this.isLoading = false;
+    //   }
+    // )
   }
 
   // make delete request to api
@@ -73,7 +82,7 @@ export class DragonListComponent implements OnInit {
   }
 
   // sort dragon list alphabetically
-  sortList() {
-    this.dragonList.sort((prev, next) => (prev.name.toLocaleLowerCase() > next.name.toLocaleLowerCase()) ? 1 : -1);
-  }
+  // sortList() {
+  //   this.dragonList.sort((prev, next) => (prev.name.toLocaleLowerCase() > next.name.toLocaleLowerCase()) ? 1 : -1);
+  // }
 }
