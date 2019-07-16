@@ -5,6 +5,7 @@ import { Store } from '@ngrx/store';
 
 import { Dragon } from '../dragon.model';
 import { DragonService } from '../dragon.service';
+import * as DragonActions from '../store/dragon.actions';
 
 @Component({
   selector: 'app-dragon-edit',
@@ -72,8 +73,8 @@ export class DragonEditComponent implements OnInit {
       name: newData.name,
       type: newData.type
     }
-
-    this.sendEditRequest(dragonData);
+    this.store.dispatch(new DragonActions.EditDragon(dragonData));
+    // this.sendEditRequest(dragonData);
   }
   
   // send edit dragon request

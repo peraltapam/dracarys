@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 
 import { Dragon } from '../dragon.model';
 import { DragonService } from '../dragon.service';
+import * as DragonActions from '../store/dragon.actions';
 
 @Component({
   selector: 'app-dragon-list',
@@ -30,6 +31,7 @@ export class DragonListComponent implements OnInit {
     // this.isLoading = true;
     this.alert = null;
 
+    this.store.dispatch(new DragonActions.LoadList());
     this.dragonList = this.store.select('dragons');
 
     // this.route.data.subscribe(data => {
