@@ -2,6 +2,10 @@
 
 This application Creates, Reads, Updates and Deletes dragon information.
 
+# LOGIN
+user: dany
+psw: drogon
+
 ## Technologies
 
 * [Angular CLI](https://github.com/angular/angular-cli) version 8.0.3.
